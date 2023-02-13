@@ -33,8 +33,9 @@ if (input == '1'){
     bool isNew = true;
     while (dataLine != null){
         try{
-            dataLine = ","+sr.ReadLine()+",FillerTextFilling";
+            dataLine = sr.ReadLine();
             movie = dataLine.Substring(dataLine.IndexOf(",")+1,dataLine.LastIndexOf(",")-7);
+            logger.Info(movie);
             if (movie == newMovie){
                 logger.Info("Duplicate movie");
                 System.Console.WriteLine("That movie is already in the file.");
@@ -45,8 +46,9 @@ if (input == '1'){
         }
     }
     if (isNew){
-        sw.WriteLine(newMovie);
+        sw.WriteLine(","+newMovie+",");
         System.Console.WriteLine("Movie added successfully");
         logger.Info("Movie added");
+        sw.Flush();
     }
 }

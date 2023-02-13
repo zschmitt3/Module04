@@ -5,8 +5,9 @@ System.Console.WriteLine("Enter 2 to add a movie");
 System.Console.WriteLine("Enter anything else to quit");
 char input = char.Parse(Console.ReadLine());
 var logger = LogManager.LoadConfiguration(Directory.GetCurrentDirectory() + "\\nlog.config").GetCurrentClassLogger();
-StreamReader sr = new StreamReader("movies.csv");
-
+FileStream fs = new FileStream("movies.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+StreamReader sr = new StreamReader(fs);
+StreamWriter sw = new StreamWriter(fs);
 
 
 if (input == '1'){
@@ -44,7 +45,6 @@ if (input == '1'){
         }
     }
     if (isNew){
-        StreamWriter sw = new StreamWriter("movies.csv");
         sw.WriteLine(newMovie);
         System.Console.WriteLine("Movie added successfully");
         logger.Info("Movie added");

@@ -31,10 +31,15 @@ if (input == '1'){
     string newMovie = Console.ReadLine();
     string dataLine = ","+sr.ReadLine()+",FillerTextFilling";
     string movie = dataLine.Substring(dataLine.IndexOf(",")+1,dataLine.LastIndexOf(","));
+    bool errored = true;
     bool isNew = true;
-    while (dataLine != null){
+    string movieID ="";
+    while (errored){
         try{
             dataLine = sr.ReadLine();
+            if (dataLine != ""){
+                movieID = dataLine.Substring(0,dataLine.IndexOf(","));
+            }
             movie = dataLine.Substring(dataLine.IndexOf(",")+1,dataLine.LastIndexOf(",")-7);
             if (movie == newMovie){
                 logger.Info("Duplicate movie");
@@ -42,7 +47,7 @@ if (input == '1'){
                 isNew = false;
             }
         }catch{
-            dataLine = null;
+            errored = false;
         }
     }
     if (isNew){
@@ -55,7 +60,6 @@ if (input == '1'){
             genreOne = Console.ReadLine();
         }
         genre.Add(genreOne);
-        dataLine = sr.ReadLine();
         bool go = true;
         bool valid = true;
         bool forLoopWasBeingDumbBool = true;
@@ -85,6 +89,7 @@ if (input == '1'){
             }
         }
         
+        
         string genres = "";
         int genreListLength = genre.Count;
         forLoopWasBeingDumbBool = true;
@@ -98,16 +103,7 @@ if (input == '1'){
         }
         genres = genres.Substring(0,genres.LastIndexOf("|"));
 
-        int movieID = 0;
-        while (dataLine != null){
-            try{
-                dataLine = sr.ReadLine();
-                movieID = Int32.Parse(dataLine.Substring(0,dataLine.IndexOf(",")));
-            }catch{
-                dataLine = null;
-            }
-        }
-        movieID++;
+
 
         sw.WriteLine(movieID+", "+newMovie+", "+genres);
         System.Console.WriteLine("Movie added successfully");

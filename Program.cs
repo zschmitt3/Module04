@@ -1,4 +1,5 @@
 ﻿using NLog;
+using System.Collections;
 
 System.Console.WriteLine("Enter 1 to print movies");
 System.Console.WriteLine("Enter 2 to add a movie");
@@ -35,7 +36,6 @@ if (input == '1'){
         try{
             dataLine = sr.ReadLine();
             movie = dataLine.Substring(dataLine.IndexOf(",")+1,dataLine.LastIndexOf(",")-7);
-            logger.Info(movie);
             if (movie == newMovie){
                 logger.Info("Duplicate movie");
                 System.Console.WriteLine("That movie is already in the file.");
@@ -46,7 +46,58 @@ if (input == '1'){
         }
     }
     if (isNew){
-        sw.WriteLine(","+newMovie+",");
+        System.Console.WriteLine("Enter a genre.");
+        List<string> genre = new List<string>();
+        sr = new StreamReader("movies.csv");
+        string genreOne=Console.ReadLine();
+        while(genreOne==""){
+            System.Console.WriteLine("A genre must be entered.");
+            System.Console.WriteLine("Enter a genre.");
+            genreOne = Console.ReadLine();
+        }
+        genre.Add(genreOne);
+        dataLine = sr.ReadLine();
+        bool go = true;
+        bool valid = true;
+        string newGenre = Console.ReadLine();
+        while (go){
+            System.Console.WriteLine("Enter another genre, leave blank to proceed.");
+            newGenre = Console.ReadLine();
+            if (newGenre == ""){
+                go = false;
+            }else{
+                for(int i = 0; i == genre.Count; i++){
+                    if(genre.ElementAt(i)==newGenre){
+                        System.Console.WriteLine("Genre already listed.");
+                        valid = false;
+                    }
+                }
+            }
+            if (valid){
+                genre.Add(newGenre);
+                valid = true;
+            }
+        }
+        
+        string genres = "";
+        int genreListLength = genre.Count;
+        for(int i = 0; i== genreListLength-1;i++){
+            genres = genres+genre.ElementAt(i)+"|";
+        }
+        genres = genres+genre.ElementAt(genreListLength);
+
+        int movieID = 0;
+        while (dataLine != null){
+            try{
+                dataLine = sr.ReadLine();
+                movieID = Int32.Parse(dataLine.Substring(0,dataLine.IndexOf(",")));
+            }catch{
+                dataLine = null;
+            }
+        }
+        movieID++;
+
+        sw.WriteLine(movieID+", "+newMovie+", "+genres);
         System.Console.WriteLine("Movie added successfully");
         logger.Info("Movie added");
         sw.Flush();

@@ -1194,8 +1194,8 @@ movieId,title,genres
 1475,Kama Sutra: A Tale of Love (1996),Romance
 1476,Private Parts (1997),Comedy|Drama
 1479,"Saint, The (1997)",Action|Romance|Sci-Fi|Thriller
-1480,Smilla's Sense of Snow (1997),Drama|Thriller
-1482,"Van, The (1996)",Comedy|Drama
+1480,Smilla's Sense of Snow (1997),Drama|ThrilMovie
+82,"Van, The (1996)",Comedy|Drama
 1483,Crash (1996),Drama|Thriller
 1484,"Daytrippers, The (1996)",Comedy|Drama|Mystery|Romance
 1485,Liar Liar (1997),Comedy
@@ -9124,3 +9124,9 @@ movieId,title,genres
 163949,The Beatles: Eight Days a Week - The Touring Years (2016),Documentary
 164977,The Gay Desperado (1936),Comedy
 164979,"Women of '69, Unboxed",Documentary
+Movie
+Movie
+Movie
+,Movie,
+,Movie,
+,Movie,

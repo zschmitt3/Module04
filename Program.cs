@@ -48,7 +48,6 @@ if (input == '1'){
     if (isNew){
         System.Console.WriteLine("Enter a genre.");
         List<string> genre = new List<string>();
-        sr = new StreamReader("movies.csv");
         string genreOne=Console.ReadLine();
         while(genreOne==""){
             System.Console.WriteLine("A genre must be entered.");
@@ -59,17 +58,24 @@ if (input == '1'){
         dataLine = sr.ReadLine();
         bool go = true;
         bool valid = true;
-        string newGenre = Console.ReadLine();
+        bool forLoopWasBeingDumbBool = true;
+        string newGenre;
+        int forLoopWasBeingDumbInt = 0;
         while (go){
             System.Console.WriteLine("Enter another genre, leave blank to proceed.");
             newGenre = Console.ReadLine();
             if (newGenre == ""){
                 go = false;
             }else{
-                for(int i = 0; i == genre.Count; i++){
-                    if(genre.ElementAt(i)==newGenre){
+                while(forLoopWasBeingDumbBool){
+                    System.Console.WriteLine(genre.ElementAt(forLoopWasBeingDumbInt)+" "+newGenre);
+                    if(genre.ElementAt(forLoopWasBeingDumbInt)==newGenre){
                         System.Console.WriteLine("Genre already listed.");
                         valid = false;
+                    }
+                    forLoopWasBeingDumbInt++;
+                    if (forLoopWasBeingDumbInt == genre.Count){
+                        forLoopWasBeingDumbBool = false;
                     }
                 }
             }
@@ -81,10 +87,16 @@ if (input == '1'){
         
         string genres = "";
         int genreListLength = genre.Count;
-        for(int i = 0; i== genreListLength-1;i++){
-            genres = genres+genre.ElementAt(i)+"|";
+        forLoopWasBeingDumbBool = true;
+        forLoopWasBeingDumbInt = 0;
+        while(forLoopWasBeingDumbBool){
+            genres = genres+genre.ElementAt(forLoopWasBeingDumbInt)+"|";
+            forLoopWasBeingDumbInt++;
+            if(forLoopWasBeingDumbInt>=genreListLength-1){
+                forLoopWasBeingDumbBool=false;
+            }
         }
-        genres = genres+genre.ElementAt(genreListLength);
+        genres = genres.Substring(0,genres.LastIndexOf("|"));
 
         int movieID = 0;
         while (dataLine != null){

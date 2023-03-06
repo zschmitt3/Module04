@@ -9,5 +9,5 @@ ticketList.Add(newTicket);
 
 StreamWriter sw = new StreamWriter("Tickets.csv", append: true);
 sw.WriteLine(header);
-sw.WriteLine(ticketList[1].returnString());
+sw.WriteLine(ticketList[0].returnString());
 sw.Close();

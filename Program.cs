@@ -1,6 +1,8 @@
 ﻿using NLog;
 using System.Collections;
 
+
+FileScrubber.ScrubMovies("movies.csv");
 System.Console.WriteLine("Enter 1 to print movies");
 System.Console.WriteLine("Enter 2 to add a movie");
 System.Console.WriteLine("Enter anything else to quit");
@@ -9,7 +11,6 @@ var logger = LogManager.LoadConfiguration(Directory.GetCurrentDirectory() + "\\n
 FileStream fs = new FileStream("movies.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
 StreamReader sr = new StreamReader(fs);
 StreamWriter sw = new StreamWriter(fs);
-
 
 if (input == '1'){
     logger.Info("Print selected.");

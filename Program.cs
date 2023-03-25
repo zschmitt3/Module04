@@ -104,9 +104,18 @@ if (input == '1'){
         }
         genres = genres.Substring(0,genres.LastIndexOf("|"));
 
+        string director;
+        System.Console.WriteLine("Enter the director.");
+        director = Console.ReadLine();
+        if (director == ""){director = "Unassigned";}
+
+        string runtime;
+        System.Console.WriteLine("Enter the runtime.");
+        runtime = Console.ReadLine();
+        if(runtime == ""){runtime = "Unassigned";}
 
 
-        sw.WriteLine(movieID+", "+newMovie+", "+genres);
+        sw.WriteLine(movieID+","+newMovie+","+genres+","+director+","+runtime);
         System.Console.WriteLine("Movie added successfully");
         logger.Info("Movie added");
         sw.Flush();

@@ -1,6 +1,5 @@
 ﻿using System.IO;
 
-<<<<<<< HEAD
 System.Console.WriteLine("Enter 1 to print movies");
 System.Console.WriteLine("Enter 2 to add a movie");
 System.Console.WriteLine("Enter anything else to quit");
@@ -111,16 +110,3 @@ if (input == '1'){
         sw.Flush();
     }
 }
-=======
-//string header = "TicketID, Summary, Status, Priority, Submitter, Assigned, Watching";
-
-List<Ticket> ticketList = new List<Ticket>();
-Ticket newTicket = new Ticket(1, "This is a bug ticket", "Open", "High", "Drew Kjell", "Jane Doe", "Drew Kjell|John Smith|Bill Jones","???");
-ticketList.Add(newTicket);
-//string entry "1,This is a bug ticket,Open,High,Drew Kjell,Jane Doe,Drew Kjell|John Smith|Bill Jones";
-
-StreamWriter sw = new StreamWriter("Tickets.csv", append: true);
-//sw.WriteLine(header);
-sw.WriteLine(ticketList[0].returnString());
-sw.Close();
->>>>>>> e8a8e8ee19738d4d1880819b3cd439ce89c70d5b

@@ -1,8 +1,5 @@
-﻿using NLog;
-using System.Collections;
+﻿using System.IO;
 
-
-FileScrubber.ScrubMovies("movies.csv");
 System.Console.WriteLine("Enter 1 to print movies");
 System.Console.WriteLine("Enter 2 to add a movie");
 System.Console.WriteLine("Enter anything else to quit");
@@ -11,6 +8,7 @@ var logger = LogManager.LoadConfiguration(Directory.GetCurrentDirectory() + "\\n
 FileStream fs = new FileStream("movies.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
 StreamReader sr = new StreamReader(fs);
 StreamWriter sw = new StreamWriter(fs);
+
 
 if (input == '1'){
     logger.Info("Print selected.");
@@ -104,18 +102,9 @@ if (input == '1'){
         }
         genres = genres.Substring(0,genres.LastIndexOf("|"));
 
-        string director;
-        System.Console.WriteLine("Enter the director.");
-        director = Console.ReadLine();
-        if (director == ""){director = "Unassigned";}
-
-        string runtime;
-        System.Console.WriteLine("Enter the runtime.");
-        runtime = Console.ReadLine();
-        if(runtime == ""){runtime = "Unassigned";}
 
 
-        sw.WriteLine(movieID+","+newMovie+","+genres+","+director+","+runtime);
+        sw.WriteLine(movieID+", "+newMovie+", "+genres);
         System.Console.WriteLine("Movie added successfully");
         logger.Info("Movie added");
         sw.Flush();
